@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하회탈에서 모나리자까지 | 안동에서 만나는 예술 이야기</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1a237e;
+            --primary-light: #534bae;
+            --accent: #d4af37;
+            --text: #1a1a1a;
+            --text-light: #666666;
+            --bg: #ffffff;
+            --bg-alt: #f8f9fa;
+        }
+        
+        body {
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(135deg, #1a237e 0%, #311b92 50%, #4a148c 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="1200" height="800" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+        
+        .hero-tagline {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            letter-spacing: -0.5px;
+        }
+        
+        .event-info-card {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 2.5rem 3.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.8s both;
+            transition: transform 0.3s ease;
+        }
+        
+        .event-info-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .event-info-item {
+            font-size: 1.3rem;
+            margin: 1.2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+        }
+        
+        .event-info-item strong {
+            color: var(--accent);
+            margin-right: 1.5rem;
+            font-weight: 600;
+            min-width: 70px;
+            flex-shrink: 0;
+        }
+        
+        .event-info-item span {
+            flex: 1;
+            font-weight: 400;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Section */
+        .section {
+            padding: 6rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .section h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        
+        /* Intro Card */
+        .intro-card {
+            background: white;
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .intro-card p {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 1.8rem;
+            font-weight: 400;
+        }
+        
+        .intro-card strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary));
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 0;
+            margin-right: auto;
+        }
+        
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        
+        .timeline-time {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+        
+        .timeline-desc {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--primary);
+            z-index: 2;
+        }
+        
+        /* Speakers Grid */
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .speaker-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .speaker-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .speaker-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2.5rem;
+            text-align: center;
+        }
+        
+        .speaker-header h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .speaker-title {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+        
+        .speaker-body {
+            padding: 2.5rem;
+        }
+        
+        .speaker-body ul {
+            list-style: none;
+        }
+        
+        .speaker-body li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        .speaker-body li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+        
+        /* Video Section - SXSW Style */
+        .video-section {
+            position: relative;
+            background: #000;
+            overflow: hidden;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            max-width: 100%;
+            margin: 0;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .video-wrapper.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.3) 0%,
+                transparent 20%,
+                transparent 80%,
+                rgba(0,0,0,0.5) 100%
+            );
+        }
+        
+        .video-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><linearGradient id="grad1" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" style="stop-color:rgb(212,175,55);stop-opacity:0.1" /><stop offset="100%25" style="stop-color:rgb(26,35,126);stop-opacity:0.1" /></linearGradient></defs><rect width="1920" height="1080" fill="url(%23grad1)"/><circle cx="200" cy="200" r="100" fill="rgba(212,175,55,0.05)"/><circle cx="1720" cy="880" r="150" fill="rgba(26,35,126,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.4;
+        }
+        
+        .video-text-overlay {
+            position: absolute;
+            bottom: 8%;
+            left: 5%;
+            z-index: 2;
+            color: white;
+            max-width: 600px;
+            pointer-events: none;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        .video-text-overlay h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            letter-spacing: -1px;
+        }
+        
+        .video-text-overlay p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        
+        /* Places Grid */
+        .places-category {
+            margin-bottom: 4rem;
+        }
+        
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .category-title::before {
+            content: '';
+            width: 5px;
+            height: 30px;
+            background: var(--accent);
+            margin-right: 1rem;
+            border-radius: 3px;
+        }
+        
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .place-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .place-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .place-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+            border-color: var(--accent);
+        }
+        
+        .place-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), #f4d03f);
+            color: #000;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .place-card h4 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .place-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            font-weight: 400;
+        }
+        
+        /* Map Section */
+        .map-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+        
+        .map-card h4 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .map-info {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .map-info-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            background: var(--bg-alt);
+            border-radius: 10px;
+        }
+        
+        .map-info-item strong {
+            min-width: 100px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary) 0%, #311b92 100%);
+            color: white;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .footer p {
+            margin: 0.8rem 0;
+            opacity: 0.9;
+            font-size: 1.05rem;
+            font-weight: 400;
+        }
+        
+        .footer-divider {
+            width: 100px;
+            height: 2px;
+            background: var(--accent);
+            margin: 2rem auto;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .video-text-overlay {
+                left: 3%;
+                bottom: 5%;
+                max-width: 90%;
+            }
+            
+            .video-text-overlay h3 {
+                font-size: 1.8rem;
+            }
+            
+            .video-text-overlay p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            
+            .event-info-card {
+                padding: 2rem;
+            }
+            
+            .event-info-item {
+                font-size: 1.1rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .event-info-item strong {
+                margin-bottom: 0.3rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            .intro-card {
+                padding: 2.5rem;
+            }
+            
+            .speakers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-text-overlay h3 {
+                font-size: 1.5rem;
+            }
+            
+            .video-text-overlay p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">2025 Better里 문화충전 프로그램</div>
+            <h1>하회탈에서<br>모나리자까지</h1>
+            <div class="hero-tagline">안동에서 만나는 예술 이야기</div>
+            <div class="event-info-card">
+                <div class="event-info-item">
+                    <strong>일시</strong>
+                    <span>2025년 11월 1일 (금) 오후 2시</span>
+                </div>
+                <div class="event-info-item">
+                    <strong>장소</strong>
+                    <span>안동 구름에 리조트 구인당</span>
+                </div>
+                <div class="event-info-item">
+                    <strong>정원</strong>
+                    <span>선착순 50명 (마감)</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </div>
+
+    <div class="section" id="intro">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">About</div>
+                <h2>행사 소개</h2>
+            </div>
+            <div class="intro-card">
+                <p>2025 Better里 인구감소지역 생활인구 충전 지원사업의 일환으로, 안동의 아름다운 예술과 문화를 온·오프라인으로 만나보는 특별한 시간을 준비했습니다.</p>
+                <p>유튜브 채널 <strong>'도슨트 정우철'</strong>을 통해 송강미술관, 안동시립박물관, 예끼마을, 선성현문화단지 등 안동의 다양한 예술 공간을 먼저 만나보셨다면, 이제 오프라인에서 직접 만나는 시간입니다.</p>
+                <p>안동의 상징 <strong>하회탈</strong>부터 세계적인 명화 <strong>모나리자</strong>까지, 두 명의 전문가가 들려주는 깊이 있는 예술 이야기를 경험해보세요.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="program" style="background: var(--bg-alt);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Program</div>
+                <h2>프로그램</h2>
+                <p class="section-description">2시간 30분 동안 펼쳐지는 예술 여정</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">14:00</div>
+                        <div class="timeline-title">개회</div>
+                        <div class="timeline-desc">환영 인사 및 행사 안내</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">14:10 - 14:55</div>
+                        <div class="timeline-title">하회탈의 미소</div>
+                        <div class="timeline-desc">임정혁 선임 큐레이터 (송강미술관)<br>안동 하회탈에 담긴 역사와 예술적 가치를 깊이 있게 탐구합니다</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">14:55 - 15:05</div>
+                        <div class="timeline-title">휴식</div>
+                        <div class="timeline-desc">10분간의 휴식 시간</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">15:05 - 15:50</div>
+                        <div class="timeline-title">모나리자의 미소</div>
+                        <div class="timeline-desc">정우철 도슨트<br>레오나르도 다빈치의 걸작 모나리자를 새로운 시각으로 읽어냅니다</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">15:50 - 16:20</div>
+                        <div class="timeline-title">럭키 드로우</div>
+                        <div class="timeline-desc">안동까지 찾아주신 분들을 위한 특별한 선물 추첨 이벤트</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">16:20</div>
+                        <div class="timeline-title">종료</div>
+                        <div class="timeline-desc">행사 마무리 및 인사</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="speakers">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Speakers</div>
+                <h2>연사 소개</h2>
+                <p class="section-description">예술의 깊이를 전하는 두 명의 전문가</p>
+            </div>
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-header">
+                        <h3>임정혁</h3>
+                        <p class="speaker-title">송강미술관 선임 큐레이터</p>
+                    </div>
+                    <div class="speaker-body">
+                        <ul>
+                            <li>안동 지역 문화예술 전문가</li>
+                            <li>하회탈 및 한국 전통 미술 연구</li>
+                            <li>송강미술관 전시 기획 및 운영</li>
+                            <li>지역 문화재 보존 및 활용 자문</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="speaker-card">
+                    <div class="speaker-header">
+                        <h3>정우철</h3>
+                        <p class="speaker-title">도슨트 / 사이버한국외국어대학교 교수</p>
+                    </div>
+                    <div class="speaker-body">
+                        <ul>
+                            <li>EBS '정우철의 미술극장' 출연</li>
+                            <li>TVN '유 퀴즈 온 더 블럭' 출연</li>
+                            <li>JTBC '상암동 클라스', '톡파원 25시' 출연</li>
+                            <li>저서: 도슨트 정우철의 미술 극장</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section video-section" id="video">
+        <div class="container" style="max-width: 100%; padding: 0;">
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/PISHHIjPpXQ?autoplay=1&mute=1&loop=1&playlist=PISHHIjPpXQ&controls=0&modestbranding=1" 
+                        title="안동 예술 투어" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-overlay"></div>
+                    <div class="video-text-overlay">
+                        <h3>안동 예술 투어</h3>
+                        <p>행사 전, 유튜브 채널을 통해 먼저 만나본<br>안동의 숨겨진 예술 공간들</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="travel">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Travel Guide</div>
+                <h2>안동 여행 가이드</h2>
+                <p class="section-description">행사와 함께 둘러보기 좋은 안동의 명소들을 소개합니다</p>
+            </div>
+            
+            <div class="places-category">
+                <h3 class="category-title">영상 속 그곳</h3>
+                <div class="places-grid">
+                    <div class="place-card">
+                        <div class="place-badge">영상 속</div>
+                        <h4>송강미술관</h4>
+                        <p>한국 근현대 미술 작품을 만날 수 있는 안동의 대표 미술관</p>
+                    </div>
+                    
+                    <div class="place-card">
+                        <div class="place-badge">영상 속</div>
+                        <h4>안동시립박물관</h4>
+                        <p>국보 121호 하회탈을 포함한 안동의 역사와 문화 전시</p>
+                    </div>
+                    
+                    <div class="place-card">
+                        <div class="place-badge">영상 속</div>
+                        <h4>예끼마을</h4>
+                        <p>전통과 현대가 어우러진 안동의 문화 공간</p>
+                    </div>
+                    
+                    <div class="place-card">
+                        <div class="place-badge">영상 속</div>
+                        <h4>선성현문화단지</h4>
+                        <p>조선시대 선비 문화를 체험할 수 있는 역사 공간</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="places-category">
+                <h3 class="category-title">꼭 가봐야 할 명소</h3>
+                <div class="places-grid">
+                    <div class="place-card">
+                        <div class="place-badge">UNESCO</div>
+                        <h4>봉정사</h4>
+                        <p>유네스코 세계문화유산으로 지정된 한국에서 가장 오래된 목조건물</p>
+                    </div>
+                    
+                    <div class="place-card">
+                        <div class="place-badge">UNESCO</div>
+                        <h4>하회마을</h4>
+                        <p>유네스코 세계문화유산, 600년 역사를 간직한 전통 민속마을</p>
+                    </div>
+                    
+                    <div class="place-card">
+                        <div class="place-badge">UNESCO</div>
+                        <h4>병산서원</h4>
+                        <p>유네스코 세계문화유산, 조선시대를 대표하는 서원</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="location" style="background: var(--bg-alt);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Location</div>
+                <h2>오시는 길</h2>
+            </div>
+            <div class="map-card">
+                <h4>📍 안동 구름에 리조트 구인당</h4>
+                <div class="map-info">
+                    <div class="map-info-item">
+                        <strong>주소</strong>
+                        <span>경상북도 안동시 민속촌길 190</span>
+                    </div>
+                    <div class="map-info-item">
+                        <strong>주차</strong>
+                        <span>리조트 내 주차장 이용 가능</span>
+                    </div>
+                    <div class="map-info-item">
+                        <strong>문의</strong>
+                        <span>0507-1402-3038</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <h3>주최 · 주관</h3>
+            <p>2025년 Better里 인구감소지역 생활인구 충전 지원사업</p>
+            <p>㈜슈가풀컴퍼니</p>
+            <div class="footer-divider"></div>
+            <p style="font-size: 0.95rem;">서울시 마포구 매봉산로 31, 1인미디어파트너스 7층 120블럭</p>
+            <p style="font-size: 0.95rem;">문의: dalchef@naver.com</p>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(item);
+        });
+
+        // Observe speaker cards
+        document.querySelectorAll('.speaker-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.2}s`;
+            observer.observe(card);
+        });
+
+        // Observe place cards
+        document.querySelectorAll('.place-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.05}s`;
+            observer.observe(card);
+        });
+
+        // Observe video
+        document.querySelectorAll('.video-wrapper').forEach(video => {
+            observer.observe(video);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight);
+            }
+        });
+    </script>
+</body>
+</html>
